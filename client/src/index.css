@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --sunflower: #FFC72C;
+  --plant-green: #2E7D32;
+  --beige-bg: #F5F5DC;
+}
+
+body {
+  @apply bg-[#F5F5DC] text-gray-900 font-sans;
+}
+
+.btn-primary {
+  @apply bg-sunflower text-black px-6 py-2 rounded-full font-semibold hover:bg-yellow-400 transition-all duration-300;
+}
+
+.btn-secondary {
+  @apply bg-plant text-white px-6 py-2 rounded-full font-semibold hover:bg-plant-dark transition-all duration-300;
+}
+
+.card {
+  @apply bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 p-4;
+}
+
+/* Custom cursor or subtle animations can be added here */
+.hover-scale {
+  @apply transition-transform duration-300 hover:scale-105;
+}
