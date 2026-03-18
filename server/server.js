@@ -1,7 +1,8 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const cors = require('cors');
-const connectDB = require('./src/config/db');
+const express    = require('express');
+const dotenv     = require('dotenv');
+const cors       = require('cors');
+const cookieParser = require('cookie-parser');
+const connectDB  = require('./src/config/db');
 
 // Load env vars
 dotenv.config();
@@ -14,20 +15,25 @@ const app = express();
 // Body parser
 app.use(express.json());
 
+// Cookie parser (needed by JWT middleware)
+app.use(cookieParser());
+
 // Enable CORS
 app.use(cors());
 
 // Static folder for uploads
 app.use('/uploads', express.static('uploads'));
 
-// Mount basic route for testing
+// ─── Routes ──────────────────────────────────────────────────────────────────
+
+app.use('/api/auth', require('./src/routes/authRoutes'));
+
+// Health check
 app.get('/', (req, res) => {
-  res.send('API is running...');
+  res.json({ success: true, message: 'API is running...' });
 });
 
-// We will mount our routes here
-// app.use('/api/auth', require('./src/routes/auth'));
-// app.use('/api/users', require('./src/routes/users'));
+// ─── Start Server ─────────────────────────────────────────────────────────────
 
 const PORT = process.env.PORT || 5000;
 
