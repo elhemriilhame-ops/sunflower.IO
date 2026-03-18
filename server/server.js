@@ -26,9 +26,10 @@ app.use('/uploads', express.static('uploads'));
 
 // ─── Routes ──────────────────────────────────────────────────────────────────
 
-app.use('/api/auth',      require('./src/routes/authRoutes'));
+app.use('/api/auth',       require('./src/routes/authRoutes'));
 app.use('/api/pepinieres', require('./src/routes/pepiniereRoutes'));
 app.use('/api/products',   require('./src/routes/productRoutes'));
+app.use('/api/admin',      require('./src/routes/adminRoutes'));
 
 // Health check
 app.get('/', (req, res) => {
