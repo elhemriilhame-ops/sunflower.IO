@@ -10,11 +10,7 @@ const {
   getAllPepiniereApplications,
   approveApplication,
   rejectApplication,
-  // Articles
-  getAllArticles,
-  createArticle,
-  updateArticle,
-  deleteArticle,
+
 } = require('../controllers/adminController');
 
 const isAdmin = require('../middleware/isAdmin');
@@ -38,12 +34,6 @@ router.get  ('/pepinieres',             ...isAdmin, getAllPepiniereApplications)
 router.patch('/pepinieres/:id/approve', ...isAdmin, approveApplication);
 router.patch('/pepinieres/:id/reject',  ...isAdmin, rejectApplication);
 
-// ─── Articles ─────────────────────────────────────────────────────────────────
-
-router.get   ('/articles',     ...isAdmin, getAllArticles);
-router.post  ('/articles',     ...isAdmin, createArticle);
-router.put   ('/articles/:id', ...isAdmin, updateArticle);
-router.delete('/articles/:id', ...isAdmin, deleteArticle);
 
 // ─── Export ──────────────────────────────────────────────────────────────────
 

@@ -211,92 +211,6 @@ const rejectApplication = async (req, res) => {
   }
 };
 
-// ══════════════════════════════════════════════════════════════════════════════
-// ARTICLE MANAGEMENT
-// ══════════════════════════════════════════════════════════════════════════════
-
-/**
- * @desc    Get all articles
- * @route   GET /api/admin/articles
- * @access  Admin
- */
-const getAllArticles = async (req, res) => {
-  try {
-    const articles = await Article.find()
-      .populate('author', 'name email')
-      .sort({ createdAt: -1 });
-
-    res.status(200).json({ success: true, count: articles.length, data: articles });
-  } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
-  }
-};
-
-/**
- * @desc    Create an article
- * @route   POST /api/admin/articles
- * @access  Admin
- */
-const createArticle = async (req, res) => {
-  try {
-    const { title, content, image } = req.body;
-
-    const article = await Article.create({
-      title,
-      content,
-      image,
-      author: req.user.id, // Admin is the author
-    });
-
-    res.status(201).json({ success: true, data: article });
-  } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
-  }
-};
-
-/**
- * @desc    Update an article
- * @route   PUT /api/admin/articles/:id
- * @access  Admin
- */
-const updateArticle = async (req, res) => {
-  try {
-    const { title, content, image } = req.body;
-
-    const article = await Article.findByIdAndUpdate(
-      req.params.id,
-      { title, content, image },
-      { new: true, runValidators: true }
-    );
-
-    if (!article) {
-      return res.status(404).json({ success: false, message: 'Article not found' });
-    }
-
-    res.status(200).json({ success: true, data: article });
-  } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
-  }
-};
-
-/**
- * @desc    Delete an article
- * @route   DELETE /api/admin/articles/:id
- * @access  Admin
- */
-const deleteArticle = async (req, res) => {
-  try {
-    const article = await Article.findByIdAndDelete(req.params.id);
-
-    if (!article) {
-      return res.status(404).json({ success: false, message: 'Article not found' });
-    }
-
-    res.status(200).json({ success: true, message: 'Article deleted successfully' });
-  } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
-  }
-};
 
 // ══════════════════════════════════════════════════════════════════════════════
 // PRODUCT MANAGEMENT (admin — no ownership restriction)
@@ -411,11 +325,6 @@ module.exports = {
   getAllPepiniereApplications,
   approveApplication,
   rejectApplication,
-  // Articles
-  getAllArticles,
-  createArticle,
-  updateArticle,
-  deleteArticle,
   // Products
   adminGetAllProducts,
   adminCreateProduct,
