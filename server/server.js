@@ -26,7 +26,8 @@ app.use('/uploads', express.static('uploads'));
 
 // ─── Routes ──────────────────────────────────────────────────────────────────
 
-app.use('/api/auth', require('./src/routes/authRoutes'));
+app.use('/api/auth',      require('./src/routes/authRoutes'));
+app.use('/api/pepinieres', require('./src/routes/pepiniereRoutes'));
 
 // Health check
 app.get('/', (req, res) => {
