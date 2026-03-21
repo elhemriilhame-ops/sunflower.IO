@@ -10,10 +10,16 @@ const {
   getAllPepiniereApplications,
   approveApplication,
   rejectApplication,
-
+  // Products
+  adminGetAllProducts,
+  adminCreateProduct,
+  adminUpdateProduct,
+  adminDeleteProduct,
 } = require('../controllers/adminController');
 
 const isAdmin = require('../middleware/isAdmin');
+const upload  = require('../utils/uploadProductImage');
+const { productValidation } = require('../middleware/validate');
 
 const router = express.Router();
 
@@ -29,10 +35,16 @@ router.delete('/users/:id',       ...isAdmin, deleteUser);
 
 // ─── Pepiniere Applications ───────────────────────────────────────────────────
 
-// GET /api/admin/pepinieres?status=pending
 router.get  ('/pepinieres',             ...isAdmin, getAllPepiniereApplications);
 router.patch('/pepinieres/:id/approve', ...isAdmin, approveApplication);
 router.patch('/pepinieres/:id/reject',  ...isAdmin, rejectApplication);
+
+// ─── Products (Admin Overrides) ───────────────────────────────────────────────
+
+router.get   ('/products',     ...isAdmin, adminGetAllProducts);
+router.post  ('/products',     ...isAdmin, upload.single('image'), productValidation, adminCreateProduct);
+router.put   ('/products/:id', ...isAdmin, upload.single('image'), productValidation, adminUpdateProduct);
+router.delete('/products/:id', ...isAdmin, adminDeleteProduct);
 
 
 // ─── Export ──────────────────────────────────────────────────────────────────

@@ -13,7 +13,7 @@ const Cart = () => {
           <ShoppingBag className="w-12 h-12" />
         </div>
         <h2 className="text-3xl font-bold text-gray-900 mb-4">Your cart is empty</h2>
-        <p className="text-gray-500 mb-10 text-center max-w-md">Looks like you haven't added any green friends to your cart yet.</p>
+        <p className="text-gray-500 mb-10 text-center max-w-md">Looks like you haven&apos;t added any green friends to your cart yet.</p>
         <Link to="/shop/plants" className="btn-primary">
           Start Shopping
         </Link>

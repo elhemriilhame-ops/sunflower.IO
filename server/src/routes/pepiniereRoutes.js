@@ -11,6 +11,7 @@ const {
 
 const { protect, authorize } = require('../middleware/auth');
 const upload                 = require('../utils/uploadCertificates');
+const { pepiniereValidation } = require('../middleware/validate');
 
 const router = express.Router();
 
@@ -21,6 +22,7 @@ router.post(
   '/apply',
   protect,
   upload.array('certificates', 5),
+  pepiniereValidation,
   applyForPepiniere
 );
 

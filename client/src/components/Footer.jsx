@@ -5,7 +5,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-1 md:col-span-1">
             <h3 className="text-2xl font-bold mb-6">Sun<span className="text-sunflower">Flowers</span></h3>
-            <p className="text-gray-400">Bringing nature's beauty into your home with our premium plants, flowers, and essential oils.</p>
+            <p className="text-gray-400">Bringing nature&apos;s beauty into your home with our premium plants, flowers, and essential oils.</p>
           </div>
           <div>
             <h4 className="font-semibold mb-6">Shop</h4>

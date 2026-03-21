@@ -80,7 +80,7 @@ const Home = () => {
             <div className="relative z-10 lg:w-2/3">
               <h2 className="text-4xl lg:text-5xl font-bold text-white mb-8">Unsure which plant fits your home?</h2>
               <p className="text-plant-light text-xl mb-10 max-w-xl">
-                Check out our easy-to-follow guides for beginners. We'll help you choose the right plant based on your sunlight, humidity, and space.
+                Check out our easy-to-follow guides for beginners. We&apos;ll help you choose the right plant based on your sunlight, humidity, and space.
               </p>
               <Link to="/guides" className="btn-primary inline-flex items-center gap-3">
                 Read Plant Guides <ArrowRight className="w-6 h-6" />
