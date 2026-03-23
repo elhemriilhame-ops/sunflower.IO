@@ -27,8 +27,13 @@ app.use(express.json());
 // Cookie parser (needed by JWT middleware)
 app.use(cookieParser());
 
-// Enable CORS
-app.use(cors());
+// Enable CORS with credentials support for frontend origin
+app.use(cors({
+  origin: 'http://localhost:5175',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
+}));
 
 // Set security headers
 app.use(helmet());
